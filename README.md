@@ -1,2 +1,2 @@
 # SAE-Factory
-	Efficiently train and visualize SAE models all in one place.
+Efficiently train SAE models and visualize your LLMs in one place.
