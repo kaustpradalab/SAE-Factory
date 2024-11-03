@@ -1,2 +1,2 @@
 # SAE-Factory
-Training SAEs for your LLM, and visualize it in one place
+Train SAEs for your LLM, and visualize it in one place
