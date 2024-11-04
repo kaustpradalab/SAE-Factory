@@ -15,6 +15,7 @@
 # limitations under the License.
 
 from dataclasses import dataclass, field
+from typing import Literal
 
 
 @dataclass
@@ -51,7 +52,9 @@ class TrainArguments:
     adam_beta2: float = field(
         default=0.999, metadata={"help": ("The beta2 parameter for Adam.")}
     )
-    lr_scheduler_name: str = field(
+    lr_scheduler_name: Literal[
+        "constant", "cosineannealing", "cosineannealingwarmrestarts"
+    ] = field(
         default="constant",
         metadata={
             "help": (
@@ -84,8 +87,23 @@ class TrainArguments:
             )
         },
     )
+    training_tokens: int = field(
+        default=2000000,
+        metadata={
+            "help": (
+                "The number of training tokens."
+                "generally = total_training_steps * batch_size"
+            )
+        },
+    )
     device: str = field(
         default="cuda", metadata={"help": ("The device to use. Usually cuda.")}
     )
     seed: int = field(default=42, metadata={"help": ("The seed to use.")})
     dtype: str = str(default="float32", metadata={"help": ("The data type to use.")})
+    n_checkpoints: int = field(
+        default=0, metadata={"help": ("The number of checkpoints.")}
+    )
+    checkpoint_path: str = field(
+        default="checkpoint", metadata={"help": ("The path to save checkpoints.")}
+    )

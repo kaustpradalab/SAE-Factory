@@ -41,6 +41,14 @@ class DataArguments:
             )
         },
     )
+    dataset_trust_remote_code: bool = field(
+        default=True,
+        metadata={
+            "help": (
+                "Whether to trust remote code when loading datasets from Huggingface."
+            )
+        },
+    )
     streaming: bool = field(
         default=False,
         metadata={

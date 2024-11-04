@@ -14,12 +14,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
+from typing import Literal
 
 
 @dataclass
 class ModelArguments:
-    pass
-    # model_name_or_path: str = field(
-    #     metadata={"help": "The model checkpoint for weights initialization."}
-    # )
+    model_name: str = field(
+        default="tiny-stories-1L-21M",
+        metadata={
+            "help": (
+                "The name of the model to use. This should be the name of the model in the Hugging Face model hub."
+                "more options here: https://neelnanda-io.github.io/TransformerLens/generated/model_properties_table.html"
+            )
+        },
+    )
+    # TODO: support more model type
+    model_class_name: Literal["HookedTransformer", "HookedMamba"] = field(
+        default="HookedTransformer",
+        metadata={
+            "help": (
+                "The name of the class of the model to use. This should be either HookedTransformer or HookedMamba."
+            )
+        },
+    )
